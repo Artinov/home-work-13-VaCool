@@ -6,32 +6,26 @@ var server = http.createServer(function(request, response) {
 	var url = request.url.substring(1);
 	var firstNumber = parseInt(url);
 	var textFirstNumber = firstNumber + "";
-	var secondNumber = parseInt(url.substring(textFirstNumber.length+1));
-	response.end(secondNumber);
-	var check = new Boolean(false);
-	if (url.substring(textFirstNumber.length, textFirstNumber.length + 1) === "-" 
-		|| url.substring(textFirstNumber.length, textFirstNumber.length + 1) === "+" 
-		|| url.substring(textFirstNumber.length, textFirstNumber.length + 1) === "*" 
-		|| url.substring(textFirstNumber.length, textFirstNumber.length + 1) === "/"
-		|| url.substring(textFirstNumber.length, textFirstNumber.length + 1) === "%") {
-		check = true;
-	}	
-	if (typeof(firstNumber) == "number" && typeof(secondNumber) == "number" && check == true){
+	var secondNumber = parseInt(url.substring(textFirstNumber.length + 1));
+	if (typeof(firstNumber) == "number" && typeof(secondNumber) == "number"){
 	switch(url.substring(textFirstNumber.length, textFirstNumber.length + 1)) {
 		case '-':
-			response.end(firstNumber - secondNumber);
+			response.end(firstNumber - secondNumber + "");
 			break;
 		case '+':
-			response.end(firstNumber + secondNumber);
+			response.end(firstNumber + secondNumber + "");
 			break;
 		case '*':
-			response.end(firstNumber * secondNumber);
+			response.end(firstNumber * secondNumber + "");
 			break;
 		case '/':
-			response.end(firstNumber / secondNumber);
+			response.end(firstNumber / secondNumber + "");
 			break;
 		case '%':
-			response.end(firstNumber % secondNumber);
+			response.end(firstNumber % secondNumber + "");
+			break;
+		default:
+			response.end("incorrect data");
 			break;
 	}
 	}
